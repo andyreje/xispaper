@@ -4,29 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>王晨西 | 个人简历</title>
-    <!-- 字体与图标库 -->
+    <!-- 引入专业字体和图标库 -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- 1. 商务风格配色 --- */
+        /* --- 1. 核心配色体系 (商务蓝绿调) --- */
         :root {
-            --bg-color: #f8fafc; /* 云雾白背景 */
-            --text-main: #1e293b; /* 深灰黑正文 */
-            --text-light: #64748b; /* 浅灰辅助文 */
-            --primary: #0f766e; /* 墨绿/深青色 - 代表稳重与效率 */
-            --accent: #0ea5e9; /* 天空蓝 - 代表活力与沟通 */
-            --card-bg: rgba(255, 255, 255, 0.85); /* 磨砂白卡片 */
+            --bg-color: #f8fafc;        /* 背景：云雾白 */
+            --text-main: #1e293b;       /* 正文：深蓝灰 */
+            --text-light: #64748b;      /* 辅助：中灰 */
+            --primary: #0f766e;         /* 主色：墨绿 (稳重、合规) */
+            --accent: #0ea5e9;          /* 点缀：天蓝 (沟通、活力) */
+            --card-bg: rgba(255, 255, 255, 0.9);
             --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background-color: var(--bg-color);
@@ -35,124 +30,68 @@
             overflow-x: hidden;
         }
 
-        /* --- 2. 动态背景 (清新版) --- */
+        /* --- 2. 动态粒子背景 --- */
         #canvas-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
             background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         }
 
         /* --- 3. 导航栏 --- */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+            position: fixed; top: 0; width: 100%;
             padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.9);
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
         }
 
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
+        .logo { font-size: 1.4rem; font-weight: 700; color: var(--primary); letter-spacing: 1px; }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--text-main); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
 
         @media screen and (max-width: 768px) {
-            nav { padding: 1rem; flex-direction: column; gap: 10px; }
-            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            nav { padding: 0.8rem 5%; }
+            .nav-links { display: none; } /* 手机端简化导航 */
         }
 
         /* --- 4. 布局容器 --- */
         section {
-            padding: 100px 8%;
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 110px 8% 60px;
+            min-height: auto;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
         /* --- 5. 个人简介 (Hero) --- */
         .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            flex-wrap: wrap-reverse; 
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 50px; flex-wrap: wrap-reverse;
+            padding-top: 40px;
+            padding-bottom: 60px;
         }
 
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
+        .hero-text { flex: 1; min-width: 300px; }
+        
         .hero-text h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
             color: var(--text-main);
             line-height: 1.2;
             margin-bottom: 1rem;
         }
-
-        .hero-text h1 span {
-            color: var(--primary);
-        }
+        
+        .hero-text h1 span { color: var(--primary); }
 
         .role-tag {
             display: inline-block;
-            background: rgba(14, 165, 233, 0.1);
+            background: rgba(15, 118, 110, 0.1);
             color: var(--primary);
-            padding: 5px 15px;
+            padding: 6px 16px;
             border-radius: 20px;
             font-weight: 600;
             margin-bottom: 20px;
@@ -161,36 +100,26 @@
 
         .intro-desc {
             color: var(--text-light);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             margin-bottom: 30px;
             max-width: 600px;
+            text-align: justify;
         }
 
-        /* --- 核心：动态头像样式 --- */
+        /* 动态头像样式 */
         .hero-visual {
-            width: 280px;
-            height: 280px;
-            /* 动态变形边框 */
+            width: 260px; height: 260px;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             position: relative;
             animation: morph 8s ease-in-out infinite;
-            /* 关键：确保图片裁剪在形状内 */
-            overflow: hidden; 
-            box-shadow: 0 20px 50px rgba(15, 118, 110, 0.3);
-            border: 4px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(15, 118, 110, 0.25);
+            border: 4px solid rgba(255, 255, 255, 0.6);
+            flex-shrink: 0; /* 防止头像被挤压 */
         }
 
-        /* 头像图片属性 */
-        .hero-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 保证填满不拉伸 */
-            transition: transform 0.5s ease;
-        }
-
-        .hero-visual:hover img {
-            transform: scale(1.05); /* 鼠标悬停微微放大 */
-        }
+        .hero-visual img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .hero-visual:hover img { transform: scale(1.05); }
 
         @keyframes morph {
             0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
@@ -198,101 +127,78 @@
             100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
         }
 
-        /* --- 6. 核心工作内容 (Grid) --- */
+        /* --- 6. 工作内容卡片 (Grid) --- */
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2rem; color: var(--primary); display: inline-block; position: relative; }
+        .section-header h2::after { content: ''; display: block; width: 40px; height: 3px; background: var(--accent); margin: 8px auto 0; }
+
         .work-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 卡片稍宽一点 */
             gap: 25px;
         }
 
         .work-card {
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,1);
+            padding: 35px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.8);
             box-shadow: var(--shadow);
             transition: 0.3s;
             position: relative;
             overflow: hidden;
-            opacity: 0; 
-            transform: translateY(20px);
+            opacity: 0; transform: translateY(20px); /* 初始隐形 */
         }
 
         .work-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(15, 118, 110, 0.1);
+            border-color: rgba(14, 165, 233, 0.3);
         }
 
         .work-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--accent));
         }
 
+        .card-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        
         .icon-box {
-            width: 50px;
-            height: 50px;
+            width: 45px; height: 45px;
             background: rgba(14, 165, 233, 0.1);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-size: 1.3rem; flex-shrink: 0;
         }
 
-        .work-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
+        .work-card h3 { font-size: 1.15rem; color: var(--text-main); font-weight: 700; }
+        .work-card p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 15px; text-align: justify; }
 
-        .work-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
+        /* 技能小标签 */
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+        .tag {
+            font-size: 0.75rem; padding: 3px 10px; border-radius: 12px;
+            background: #f1f5f9; color: #64748b; font-weight: 500;
         }
 
         /* --- 7. Footer --- */
         footer {
-            background: white;
-            padding: 50px 0;
-            text-align: center;
-            border-top: 1px solid #e2e8f0;
+            margin-top: 60px; padding: 60px 0; background: white; text-align: center; border-top: 1px solid #e2e8f0;
         }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(15, 118, 110, 0.3);
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--primary); color: white; padding: 12px 35px;
+            border-radius: 50px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; box-shadow: 0 5px 20px rgba(15, 118, 110, 0.3);
         }
-
-        .contact-btn:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
 
         /* 动画类 */
         .fade-in-up { animation: fadeInUp 0.8s forwards; }
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
+        .d-1 { animation-delay: 0.1s; } .d-2 { animation-delay: 0.2s; }
+        .d-3 { animation-delay: 0.3s; } .d-4 { animation-delay: 0.4s; }
+        .d-5 { animation-delay: 0.5s; }
 
     </style>
 </head>
@@ -301,12 +207,13 @@
     <!-- 背景特效 -->
     <canvas id="canvas-bg"></canvas>
 
+    <!-- 导航 -->
     <nav>
         <div class="logo">W.CHENXI</div>
         <div class="nav-links">
             <a href="#about">关于我</a>
-            <a href="#responsibilities">核心职能</a>
-            <a href="#contact">联系</a>
+            <a href="#responsibilities">专业领域</a>
+            <a href="#contact">联系方式</a>
         </div>
     </nav>
 
@@ -314,20 +221,20 @@
     <section id="about">
         <div class="hero-container">
             <div class="hero-text">
-                <span class="role-tag">HRBP / 综合行政专家</span>
+                <span class="role-tag">HRBP / 综合运营专家</span>
                 <h1>你好，我是 <span>王晨西</span></h1>
                 <p class="intro-desc">
-                    专注于企业内部的高效运营与人文关怀。不仅是制度的建设者，更是业务部门的服务者与合作伙伴。
+                    <strong>“致力于构建零风险、高效率的组织运营体系。”</strong><br>
+                    我是一名注重细节与流程优化的 HRBP。在薪酬福利、合规风控及行政后勤领域拥有丰富的实战经验。擅长通过制度建设与精细化管理，为业务部门提供强有力的后台支撑，实现企业降本增效。
                 </p>
-                <div style="display: flex; gap: 15px;">
-                    <a href="#contact" class="contact-btn">
-                        <i class="fas fa-paper-plane"></i> 取得联系
+                <div>
+                    <a href="#contact" class="btn-primary">
+                        <i class="fas fa-paper-plane"></i> 建立联系
                     </a>
                 </div>
             </div>
             
-            <!-- 头像部分：请确保你的照片名为 avatar.jpg 并放在同一目录下 -->
-            <!-- 如果没有照片，这里使用了一个在线占位图，请自行替换 src -->
+            <!-- 头像区域：请确保文件夹内有 avatar.jpg -->
             <div class="hero-visual">
                 <img src="avatar.jpg" 
                      onerror="this.src='https://ui-avatars.com/api/?name=Wang+Chenxi&background=0f766e&color=fff&size=512'" 
@@ -336,66 +243,106 @@
         </div>
     </section>
 
-    <!-- 核心工作内容区 -->
+    <!-- 核心职能区 (内容已润色) -->
     <section id="responsibilities">
         <div class="section-header">
             <h2>工作领域与专长</h2>
-            <p style="color: var(--text-light);">致力于构建合规、高效、温暖的组织环境</p>
+            <p style="color: var(--text-light); margin-top: 10px;">PROFESSIONAL COMPETENCE</p>
         </div>
 
         <div class="work-grid">
             <!-- 1. 薪酬福利 -->
-            <div class="work-card section-animate delay-1">
-                <div class="icon-box"><i class="fas fa-coins"></i></div>
-                <h3>员工薪酬福利保障</h3>
-                <p>负责薪酬计算与精准发放，优化福利体系，提升员工满意度与归属感，确保每一份付出都得到合理回报。</p>
+            <div class="work-card section-animate d-1">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-calculator"></i></div>
+                    <h3>员工薪酬福利保障</h3>
+                </div>
+                <p>独立负责全周期薪酬核算与发放，确保数据 100% 准确。优化福利体系结构，管理社保公积金缴纳，提升员工满意度的同时，有效控制人力成本。</p>
+                <div class="tags">
+                    <span class="tag">薪酬核算</span>
+                    <span class="tag">个税申报</span>
+                    <span class="tag">五险一金</span>
+                </div>
             </div>
 
-            <!-- 2. 会议与制度 -->
-            <div class="work-card section-animate delay-2">
-                <div class="icon-box"><i class="fas fa-file-signature"></i></div>
-                <h3>会议支持与制度建设</h3>
-                <p>协助各级会议的高效召开，撰写会议纪要。参与内部管理制度的搭建与优化，推动流程标准化。</p>
+            <!-- 2. 合规风控 -->
+            <div class="work-card section-animate d-2">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
+                    <h3>合规与风险管理</h3>
+                </div>
+                <p>建立严谨的合同全生命周期管理制度，规范印章使用 SOP 与台账登记。定期进行合规自查，规避劳动用工及商业合作中的法律风险，确保公司运营合规。</p>
+                <div class="tags">
+                    <span class="tag">合同审核</span>
+                    <span class="tag">印章管理</span>
+                    <span class="tag">风险规避</span>
+                </div>
             </div>
 
             <!-- 3. 行政后勤 -->
-            <div class="work-card section-animate delay-3">
-                <div class="icon-box"><i class="fas fa-building-user"></i></div>
-                <h3>综合行政与后勤保障</h3>
-                <p>打造舒适办公环境，提供全方位的后勤保障。从办公用品到环境维护，让业务团队无后顾之忧。</p>
+            <div class="work-card section-animate d-3">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-building"></i></div>
+                    <h3>综合行政与后勤</h3>
+                </div>
+                <p>统筹办公环境维护与固定资产管理。建立快速响应的后勤服务机制，从环境安全到办公设施保障，为业务团队打造舒适、无忧的办公体验。</p>
+                <div class="tags">
+                    <span class="tag">资产管理</span>
+                    <span class="tag">环境维护</span>
+                    <span class="tag">供应商管理</span>
+                </div>
             </div>
 
-            <!-- 4. 合规风控 -->
-            <div class="work-card section-animate delay-4">
-                <div class="icon-box"><i class="fas fa-scale-balanced"></i></div>
-                <h3>合规与风险管理</h3>
-                <p>严谨管理合同、印章及台账。通过精细化流程规避企业法律风险，确保运营合规，守护公司利益。</p>
+            <!-- 4. 会议与制度 -->
+            <div class="work-card section-animate d-4">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-file-pen"></i></div>
+                    <h3>会议支持与制度建设</h3>
+                </div>
+                <p>负责高层管理会议的组织与纪要撰写，确保决议落地追踪。参与编撰与优化内部管理制度（如考勤、行政规范），推动公司内部流程的标准化与透明化。</p>
+                <div class="tags">
+                    <span class="tag">会议纪要</span>
+                    <span class="tag">制度撰写</span>
+                    <span class="tag">流程优化</span>
+                </div>
             </div>
 
             <!-- 5. 运营支持 -->
-            <div class="work-card section-animate delay-5">
-                <div class="icon-box"><i class="fas fa-briefcase"></i></div>
-                <h3>日常运营支持</h3>
-                <p>统筹采购物资、报销流程审核、公车调度管理及商务接待安排，保障公司日常业务流转顺畅。</p>
+            <div class="work-card section-animate d-5">
+                <div class="card-header">
+                    <div class="icon-box"><i class="fas fa-car"></i></div>
+                    <h3>日常运营支持</h3>
+                </div>
+                <p>精细化管理采购物资与费用报销审核，杜绝浪费。负责公务车辆调度及重要商务接待安排，展现专业企业形象，保障业务流转顺畅。</p>
+                <div class="tags">
+                    <span class="tag">采购/报销</span>
+                    <span class="tag">公车管理</span>
+                    <span class="tag">商务接待</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- 底部联系区 -->
     <footer id="contact">
-        <h2>期待与您合作</h2>
-        <p style="color: var(--text-light); margin-bottom: 30px; margin-top: 10px;">
-            如果您正在寻找一位细致、专业且兼具HR与行政综合能力的伙伴。
+        <h2 style="font-size: 1.8rem; color: var(--text-main); margin-bottom: 15px;">期待为您创造价值</h2>
+        <p style="color: var(--text-light); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
+            如果您正在寻找一位严谨、高效且具备综合管理能力的 HRBP 伙伴，欢迎随时联系。
         </p>
-        <a href="mailto:your.email@example.com" class="contact-btn">
+        
+        <!-- 请记得修改下方的邮箱地址 -->
+        <a href="mailto:your.email@example.com" class="btn-primary">
             <i class="fas fa-envelope"></i> 发送邮件给王晨西
         </a>
-        <div style="margin-top: 40px; font-size: 0.85rem; color: #94a3b8;">
+        
+        <div style="margin-top: 50px; font-size: 0.85rem; color: #cbd5e1;">
             &copy; 2024 Wang Chenxi. All Rights Reserved.
         </div>
     </footer>
 
+    <!-- 脚本逻辑 -->
     <script>
-        // --- 1. 滚动显现动画 ---
+        // --- 1. 元素滚动浮现动画 ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -406,7 +353,7 @@
 
         document.querySelectorAll('.section-animate').forEach((el) => observer.observe(el));
 
-        // --- 2. 商务科技感背景 (Canvas) ---
+        // --- 2. 科技感粒子背景 (Canvas) ---
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
@@ -420,9 +367,9 @@
             constructor() {
                 this.x = Math.random() * width;
                 this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5; 
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
+                this.vx = (Math.random() - 0.5) * 0.4; // 速度慢一点更优雅
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.size = Math.random() * 2 + 0.5;
             }
             update() {
                 this.x += this.vx;
@@ -434,7 +381,7 @@
 
         function init() {
             particles = [];
-            const limit = Math.floor(width * height / 15000);
+            const limit = Math.floor(width * height / 18000); // 粒子密度
             for(let i=0; i<limit; i++) particles.push(new Point());
         }
 
@@ -444,487 +391,20 @@
             for(let i=0; i<particles.length; i++) {
                 let p1 = particles[i];
                 p1.update();
+                
+                // 画点
                 ctx.beginPath();
                 ctx.arc(p1.x, p1.y, p1.size, 0, Math.PI*2);
-                ctx.fillStyle = "rgba(15, 118, 110, 0.1)"; 
+                ctx.fillStyle = "rgba(15, 118, 110, 0.2)"; 
                 ctx.fill();
+
+                // 画线
                 for(let j=i+1; j<particles.length; j++) {
                     let p2 = particles[j];
                     let dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-                    if(dist < 100) {
+                    if(dist < 110) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(15, 118, 110, ${0.1 * (1 - dist/100)})`;
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(draw);
-        }
-
-        window.addEventListener('resize', () => { resize(); init(); });
-        resize();
-        init();
-        draw();
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>王晨西 | 个人简历</title>
-    <!-- 字体与图标库 -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- 1. 商务风格配色 --- */
-        :root {
-            --bg-color: #f8fafc; /* 云雾白背景 */
-            --text-main: #1e293b; /* 深灰黑正文 */
-            --text-light: #64748b; /* 浅灰辅助文 */
-            --primary: #0f766e; /* 墨绿/深青色 - 代表稳重与效率 */
-            --accent: #0ea5e9; /* 天空蓝 - 代表活力与沟通 */
-            --card-bg: rgba(255, 255, 255, 0.85); /* 磨砂白卡片 */
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        /* --- 2. 动态背景 (清新版) --- */
-        #canvas-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        }
-
-        /* --- 3. 导航栏 --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--accent); }
-
-        @media screen and (max-width: 768px) {
-            nav { padding: 1rem; flex-direction: column; gap: 10px; }
-            .nav-links { gap: 1rem; font-size: 0.9rem; }
-        }
-
-        /* --- 4. 布局容器 --- */
-        section {
-            padding: 100px 8%;
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-header h2::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* --- 5. 个人简介 (Hero) --- */
-        .hero-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            flex-wrap: wrap-reverse; 
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-text h1 {
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
-            color: var(--text-main);
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .hero-text h1 span {
-            color: var(--primary);
-        }
-
-        .role-tag {
-            display: inline-block;
-            background: rgba(14, 165, 233, 0.1);
-            color: var(--primary);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-        }
-
-        .intro-desc {
-            color: var(--text-light);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-
-        /* --- 核心：动态头像样式 --- */
-        .hero-visual {
-            width: 280px;
-            height: 280px;
-            /* 动态变形边框 */
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            position: relative;
-            animation: morph 8s ease-in-out infinite;
-            /* 关键：确保图片裁剪在形状内 */
-            overflow: hidden; 
-            box-shadow: 0 20px 50px rgba(15, 118, 110, 0.3);
-            border: 4px solid rgba(255, 255, 255, 0.5);
-        }
-
-        /* 头像图片属性 */
-        .hero-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* 保证填满不拉伸 */
-            transition: transform 0.5s ease;
-        }
-
-        .hero-visual:hover img {
-            transform: scale(1.05); /* 鼠标悬停微微放大 */
-        }
-
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
-        /* --- 6. 核心工作内容 (Grid) --- */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .work-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,1);
-            box-shadow: var(--shadow);
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            opacity: 0; 
-            transform: translateY(20px);
-        }
-
-        .work-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-color: var(--accent);
-        }
-
-        .work-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-        }
-
-        .icon-box {
-            width: 50px;
-            height: 50px;
-            background: rgba(14, 165, 233, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-        }
-
-        .work-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
-
-        .work-card p {
-            font-size: 0.95rem;
-            color: var(--text-light);
-        }
-
-        /* --- 7. Footer --- */
-        footer {
-            background: white;
-            padding: 50px 0;
-            text-align: center;
-            border-top: 1px solid #e2e8f0;
-        }
-
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--primary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(15, 118, 110, 0.3);
-        }
-
-        .contact-btn:hover {
-            background: var(--accent);
-            transform: translateY(-2px);
-        }
-
-        /* 动画类 */
-        .fade-in-up { animation: fadeInUp 0.8s forwards; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-        .delay-4 { animation-delay: 0.4s; }
-        .delay-5 { animation-delay: 0.5s; }
-
-    </style>
-</head>
-<body>
-
-    <!-- 背景特效 -->
-    <canvas id="canvas-bg"></canvas>
-
-    <nav>
-        <div class="logo">W.CHENXI</div>
-        <div class="nav-links">
-            <a href="#about">关于我</a>
-            <a href="#responsibilities">核心职能</a>
-            <a href="#contact">联系</a>
-        </div>
-    </nav>
-
-    <!-- 个人简介区 -->
-    <section id="about">
-        <div class="hero-container">
-            <div class="hero-text">
-                <span class="role-tag">HRBP / 综合行政专家</span>
-                <h1>你好，我是 <span>王晨西</span></h1>
-                <p class="intro-desc">
-                    专注于企业内部的高效运营与人文关怀。不仅是制度的建设者，更是业务部门的服务者与合作伙伴。
-                </p>
-                <div style="display: flex; gap: 15px;">
-                    <a href="#contact" class="contact-btn">
-                        <i class="fas fa-paper-plane"></i> 取得联系
-                    </a>
-                </div>
-            </div>
-            
-            <!-- 头像部分：请确保你的照片名为 avatar.jpg 并放在同一目录下 -->
-            <!-- 如果没有照片，这里使用了一个在线占位图，请自行替换 src -->
-            <div class="hero-visual">
-                <img src="avatar.jpg" 
-                     onerror="this.src='https://ui-avatars.com/api/?name=Wang+Chenxi&background=0f766e&color=fff&size=512'" 
-                     alt="王晨西" >
-            </div>
-        </div>
-    </section>
-
-    <!-- 核心工作内容区 -->
-    <section id="responsibilities">
-        <div class="section-header">
-            <h2>工作领域与专长</h2>
-            <p style="color: var(--text-light);">致力于构建合规、高效、温暖的组织环境</p>
-        </div>
-
-        <div class="work-grid">
-            <!-- 1. 薪酬福利 -->
-            <div class="work-card section-animate delay-1">
-                <div class="icon-box"><i class="fas fa-coins"></i></div>
-                <h3>员工薪酬福利保障</h3>
-                <p>负责薪酬计算与精准发放，优化福利体系，提升员工满意度与归属感，确保每一份付出都得到合理回报。</p>
-            </div>
-
-            <!-- 2. 会议与制度 -->
-            <div class="work-card section-animate delay-2">
-                <div class="icon-box"><i class="fas fa-file-signature"></i></div>
-                <h3>会议支持与制度建设</h3>
-                <p>协助各级会议的高效召开，撰写会议纪要。参与内部管理制度的搭建与优化，推动流程标准化。</p>
-            </div>
-
-            <!-- 3. 行政后勤 -->
-            <div class="work-card section-animate delay-3">
-                <div class="icon-box"><i class="fas fa-building-user"></i></div>
-                <h3>综合行政与后勤保障</h3>
-                <p>打造舒适办公环境，提供全方位的后勤保障。从办公用品到环境维护，让业务团队无后顾之忧。</p>
-            </div>
-
-            <!-- 4. 合规风控 -->
-            <div class="work-card section-animate delay-4">
-                <div class="icon-box"><i class="fas fa-scale-balanced"></i></div>
-                <h3>合规与风险管理</h3>
-                <p>严谨管理合同、印章及台账。通过精细化流程规避企业法律风险，确保运营合规，守护公司利益。</p>
-            </div>
-
-            <!-- 5. 运营支持 -->
-            <div class="work-card section-animate delay-5">
-                <div class="icon-box"><i class="fas fa-briefcase"></i></div>
-                <h3>日常运营支持</h3>
-                <p>统筹采购物资、报销流程审核、公车调度管理及商务接待安排，保障公司日常业务流转顺畅。</p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <h2>期待与您合作</h2>
-        <p style="color: var(--text-light); margin-bottom: 30px; margin-top: 10px;">
-            如果您正在寻找一位细致、专业且兼具HR与行政综合能力的伙伴。
-        </p>
-        <a href="mailto:your.email@example.com" class="contact-btn">
-            <i class="fas fa-envelope"></i> 发送邮件给王晨西
-        </a>
-        <div style="margin-top: 40px; font-size: 0.85rem; color: #94a3b8;">
-            &copy; 2024 Wang Chenxi. All Rights Reserved.
-        </div>
-    </footer>
-
-    <script>
-        // --- 1. 滚动显现动画 ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-up');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-animate').forEach((el) => observer.observe(el));
-
-        // --- 2. 商务科技感背景 (Canvas) ---
-        const canvas = document.getElementById('canvas-bg');
-        const ctx = canvas.getContext('2d');
-        let width, height, particles;
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        class Point {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.5; 
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if(this.x < 0 || this.x > width) this.vx *= -1;
-                if(this.y < 0 || this.y > height) this.vy *= -1;
-            }
-        }
-
-        function init() {
-            particles = [];
-            const limit = Math.floor(width * height / 15000);
-            for(let i=0; i<limit; i++) particles.push(new Point());
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, width, height);
-            ctx.lineWidth = 0.5;
-            for(let i=0; i<particles.length; i++) {
-                let p1 = particles[i];
-                p1.update();
-                ctx.beginPath();
-                ctx.arc(p1.x, p1.y, p1.size, 0, Math.PI*2);
-                ctx.fillStyle = "rgba(15, 118, 110, 0.1)"; 
-                ctx.fill();
-                for(let j=i+1; j<particles.length; j++) {
-                    let p2 = particles[j];
-                    let dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-                    if(dist < 100) {
-                        ctx.beginPath();
-                        ctx.strokeStyle = `rgba(15, 118, 110, ${0.1 * (1 - dist/100)})`;
+                        ctx.strokeStyle = `rgba(15, 118, 110, ${0.12 * (1 - dist/110)})`;
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
                         ctx.stroke();
